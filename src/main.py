@@ -96,7 +96,10 @@ def main():
     print(f"Observaciones: {resumen['observaciones']}")
     print(f"Edades faltantes: {resumen['edades_faltantes']}")
     print(f"ID duplicados: {resumen['id_duplicados']}")
-    print(f"Sobrevivientes registrados: {resumen['sobrevivientes_registrados']}")
+    print(
+        "Sobrevivientes registrados: "
+        f"{resumen['sobrevivientes_registrados']}"
+    )
     print(f"Pasajeros validos: {len(pasajeros)}")
     print(f"Registros rechazados: {len(rechazados)}")
 

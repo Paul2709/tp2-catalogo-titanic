@@ -37,6 +37,8 @@ class FuenteCSV(FuenteDatos):
             lector = csv.DictReader(archivo)
             if not lector.fieldnames:
                 raise ValueError("El CSV no tiene encabezados.")
+            if len(lector.fieldnames) != len(set(lector.fieldnames)):
+                raise ValueError("El CSV tiene encabezados duplicados.")
             registros = []
             for numero, fila in enumerate(lector, start=2):
                 if None in fila:

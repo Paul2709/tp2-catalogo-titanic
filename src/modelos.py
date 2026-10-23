@@ -1,3 +1,4 @@
+"""Modelo de pasajero y validaciones de datos."""
 
 import math
 import re

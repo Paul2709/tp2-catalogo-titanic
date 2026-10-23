@@ -1,4 +1,4 @@
-"""Inspeccion y validacion preliminar del conjunto de datos."""
+"""Inspeccion, validacion, busquedas y resumen del conjunto de datos."""
 
 from src.modelos import Pasajero
 
@@ -26,13 +26,26 @@ def validar_esquema(registros):
             )
 
 
+def normalizar_identificador_para_conteo(valor):
+    """Unificar ID numericos, como '001' y '1', durante la inspeccion."""
+    try:
+        return int(valor)
+    except (TypeError, ValueError):
+        return valor
+
+
 def inspeccionar_datos(registros):
     """Contar observaciones, edades vacias y los ID duplicados."""
     validar_esquema(registros)
 
-    identificadores = [registro["PassengerId"] for registro in registros]
+    identificadores = [
+        normalizar_identificador_para_conteo(registro["PassengerId"])
+        for registro in registros
+    ]
     edades_faltantes = sum(registro["Age"] is None for registro in registros)
-    identificadores_duplicados = len(identificadores) - len(set(identificadores))
+    identificadores_duplicados = (
+        len(identificadores) - len(set(identificadores))
+    )
     sobrevivientes = sum(registro["Survived"] == "1" for registro in registros)
 
     return {
@@ -41,6 +54,7 @@ def inspeccionar_datos(registros):
         "id_duplicados": identificadores_duplicados,
         "sobrevivientes_registrados": sobrevivientes,
     }
+
 
 def preparar_pasajeros(registros):
     """Separar pasajeros validos y registros rechazados."""
@@ -70,6 +84,7 @@ def preparar_pasajeros(registros):
 
     return pasajeros, rechazados
 
+
 def indexar_pasajeros(pasajeros):
     """Organizar pasajeros por identificador."""
     indice = {}
@@ -92,7 +107,6 @@ def buscar_pasajero(indice, identificador):
 
 def filtrar_grupo(pasajeros, clase=None, grupo_edad=None):
     """Seleccionar pasajeros por clase y grupo de edad."""
-
     if clase is not None and clase not in (1, 2, 3):
         raise ValueError("La clase debe ser 1, 2 o 3.")
 
@@ -122,15 +136,11 @@ def filtrar_grupo(pasajeros, clase=None, grupo_edad=None):
 
     return seleccionados
 
+
 def resumir_grupo(pasajeros):
     """Calcular estadisticas de supervivencia de un grupo."""
-
     total = len(pasajeros)
-
-    sobrevivientes = sum(
-        pasajero.sobrevivio for pasajero in pasajeros
-    )
-
+    sobrevivientes = sum(pasajero.sobrevivio for pasajero in pasajeros)
     no_sobrevivientes = total - sobrevivientes
 
     if total == 0:

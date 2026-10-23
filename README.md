@@ -3,7 +3,7 @@
 **Materia:** Programación Orientada a Datos  
 **Modalidad:** Individual  
 **Autor:** Paul Chavez Neira  
-**Versión de entrega (commit o etiqueta):** [Completar al finalizar]
+**Versión de entrega (commit o etiqueta):** `v1.0.0`
 
 ## 1. Problema, usuarios y solución
 
@@ -200,7 +200,7 @@ Desde la raíz del proyecto:
 python -m unittest discover -s tests -v
 ```
 
-En la versión de desarrollo verificada se ejecutaron **33 pruebas**, que cubren lectura de archivos, equivalencia CSV/JSON en muestras, casos normales, estructuras inválidas, validaciones del modelo, duplicados, filtros, grupos vacíos, conservación de cantidades y exportaciones.
+En la versión de desarrollo verificada se ejecutaron 39 pruebas, que cubren lectura de archivos, equivalencia CSV/JSON en muestras, casos normales, estructuras inválidas, validaciones del modelo, duplicados, filtros, grupos vacíos, conservación de cantidades y exportaciones.
 
 La igualdad de entrada y parámetros permite repetir el procesamiento con resultados coherentes. Para comprobar el dataset original, ejecutá los comandos del apartado 5; si cambiás los archivos de entrada o las reglas del programa, pueden variar los resultados.
 
@@ -218,8 +218,8 @@ La igualdad de entrada y parámetros permite repetir el procesamiento con result
 El proyecto se desarrolló mediante commits significativos de Git. El repositorio debe seguir accesible para la cátedra (si es privado, otorgar acceso a los evaluadores).
 
 **Repositorio:** https://github.com/Paul2709/tp2-catalogo-titanic  
-**Commit verificado tras implementar estadísticas y exportación:** `6076517`  
-**Versión definitiva de entrega:** [Actualizar este campo con el último commit o etiqueta antes de entregar]
+**Commit de mejoras, validaciones y documentación:** `ecc648c`  
+**Versión definitiva de entrega:** `v1.0.0`
 
 En la defensa se demostrará una consulta por ID, un filtro, el resumen de supervivencia, la exportación y la ejecución de las pruebas. También se explicarán la clase `Pasajero`, las fuentes `FuenteCSV`/`FuenteJSON`, la expresión regular y el tratamiento de faltantes y duplicados.
 

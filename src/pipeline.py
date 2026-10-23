@@ -121,3 +121,26 @@ def filtrar_grupo(pasajeros, clase=None, grupo_edad=None):
         seleccionados.append(pasajero)
 
     return seleccionados
+
+def resumir_grupo(pasajeros):
+    """Calcular estadisticas de supervivencia de un grupo."""
+
+    total = len(pasajeros)
+
+    sobrevivientes = sum(
+        pasajero.sobrevivio for pasajero in pasajeros
+    )
+
+    no_sobrevivientes = total - sobrevivientes
+
+    if total == 0:
+        proporcion = None
+    else:
+        proporcion = sobrevivientes / total
+
+    return {
+        "total": total,
+        "sobrevivientes": sobrevivientes,
+        "no_sobrevivientes": no_sobrevivientes,
+        "proporcion_supervivencia": proporcion,
+    }

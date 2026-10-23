@@ -1,0 +1,2 @@
+# Esta primera version usa solamente la biblioteca estandar de Python.
+# No hay paquetes externos que instalar.

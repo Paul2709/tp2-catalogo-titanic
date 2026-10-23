@@ -1,0 +1,17 @@
+# Archivos de Python
+__pycache__/
+*.py[cod]
+
+# Entornos virtuales y configuraciones locales
+.venv/
+venv/
+.env
+.vscode/
+
+# Datos originales y su conversion: no subir hasta comprobar condiciones de uso
+data/titanic.csv
+data/titanic.json
+
+# Archivos de salida (se conserva la carpeta)
+outputs/*
+!outputs/.gitkeep

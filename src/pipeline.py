@@ -1,5 +1,7 @@
 """Inspeccion y validacion preliminar del conjunto de datos."""
 
+from src.modelos import Pasajero
+
 COLUMNAS_OBLIGATORIAS = {
     "PassengerId",
     "Name",
@@ -39,3 +41,31 @@ def inspeccionar_datos(registros):
         "id_duplicados": identificadores_duplicados,
         "sobrevivientes_registrados": sobrevivientes,
     }
+
+def preparar_pasajeros(registros):
+    """Separar pasajeros validos y registros rechazados."""
+    validar_esquema(registros)
+
+    pasajeros = []
+    rechazados = []
+    identificadores = set()
+
+    for numero, registro in enumerate(registros, start=1):
+        try:
+            pasajero = Pasajero(registro)
+
+            if pasajero.identificador in identificadores:
+                raise ValueError("El ID del pasajero esta duplicado.")
+
+        except ValueError as error:
+            rechazados.append({
+                "registro": numero,
+                "identificador": registro.get("PassengerId"),
+                "motivo": str(error),
+            })
+            continue
+
+        identificadores.add(pasajero.identificador)
+        pasajeros.append(pasajero)
+
+    return pasajeros, rechazados

@@ -69,3 +69,55 @@ def preparar_pasajeros(registros):
         pasajeros.append(pasajero)
 
     return pasajeros, rechazados
+
+def indexar_pasajeros(pasajeros):
+    """Organizar pasajeros por identificador."""
+    indice = {}
+
+    for pasajero in pasajeros:
+        identificador = pasajero.identificador
+
+        if identificador in indice:
+            raise ValueError("El ID del pasajero esta duplicado.")
+
+        indice[identificador] = pasajero
+
+    return indice
+
+
+def buscar_pasajero(indice, identificador):
+    """Buscar un pasajero utilizando su ID."""
+    return indice.get(identificador)
+
+
+def filtrar_grupo(pasajeros, clase=None, grupo_edad=None):
+    """Seleccionar pasajeros por clase y grupo de edad."""
+
+    if clase is not None and clase not in (1, 2, 3):
+        raise ValueError("La clase debe ser 1, 2 o 3.")
+
+    grupos_validos = (
+        "Menor",
+        "Adulto",
+        "Adulto mayor",
+        "Edad desconocida",
+    )
+
+    if grupo_edad is not None and grupo_edad not in grupos_validos:
+        raise ValueError("El grupo de edad no es valido.")
+
+    seleccionados = []
+
+    for pasajero in pasajeros:
+        if clase is not None and pasajero.clase != clase:
+            continue
+
+        if (
+            grupo_edad is not None
+            and pasajero.grupo_edad() != grupo_edad
+        ):
+            continue
+
+        seleccionados.append(pasajero)
+
+    return seleccionados
